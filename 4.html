@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TheSteelDesigner.eu | Steel Structure Design, SAP2000, ETABS & Tekla Detailing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="European structural engineering practice specialised in steel structure design to Eurocodes, SAP2000 & ETABS analysis, Tekla Structures detailing, and independent consultancy.">
+  <meta name="keywords" content="steel design, Eurocode 3, Tekla detailing, SAP2000 analysis, ETABS, structural engineer Europe, steel connections, seismic design">
+  <meta name="author" content="Silviu Ionescu, PhD Civil Eng.">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="TheSteelDesigner.eu | Steel Design & Detailing">
+  <meta property="og:description" content="Expert steel structure design, analysis, and detailing services in Europe.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thesteeldesigner.eu/">
+  <meta property="og:image" content="https://thesteeldesigner.eu/assets/og-image.jpg">
+
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+         :root {
+      --bg-body: #0f172a;              --bg-card: #1e293b;              --bg-card-hover: #334155;
+      
+      --primary: #38bdf8;              --accent: #f59e0b;               
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      
+      --border: 1px solid rgba(148, 163, 184, 0.15);
+      --glass: rgba(15, 23, 42, 0.85);
+      
+      --font-main: 'Inter', sans-serif;
+      --font-tech: 'JetBrains Mono', monospace;
+      
+      --container-width: 1200px;
+      --header-height: 70px;
+    }
+
+         * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-body);
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;        color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+         h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+    h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; }
+    h2 { font-size: 2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    h2::before { content: '//'; color: var(--primary); font-family: var(--font-tech); font-size: 1.2rem; }
+    p { color: var(--text-muted); margin-bottom: 1.5rem; }
+    
+    .tech-text { font-family: var(--font-tech); font-size: 0.85rem; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase; }
+
+         .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+         header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-bottom: var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      border-radius: 4px;      }
+    nav { display: flex; gap: 24px; }
+    nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    nav a:hover, nav a.active { color: var(--primary); }
+    
+         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+         .hero {
+      padding-top: calc(var(--header-height) + 60px);
+      padding-bottom: 80px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+    .software-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #000;
+      border: 1px solid #333;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #fff;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+         .sw-sap { border-bottom: 2px solid #ffd700; }
+    .sw-etabs { border-bottom: 2px solid #ff4500; }
+    .sw-tekla { border-bottom: 2px solid #00bfff; }
+
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card {
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: 8px;
+      border: var(--border);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .stat-item {
+      background: rgba(0,0,0,0.2);
+      padding: 12px;
+      border-radius: 4px;
+    }
+    .stat-item strong { display: block; color: #fff; font-size: 1.1rem; }
+    .stat-item span { font-size: 0.8rem; color: var(--text-muted); }
+
+         .section-padding { padding: 80px 0; border-top: var(--border); }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      padding: 32px;
+      border: var(--border);
+      border-radius: 8px;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--primary);
+      opacity: 0;
+      transition: 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { font-size: 1.5rem; margin-bottom: 16px; color: var(--primary); }
+    .service-list { margin-top: 16px; padding-left: 0; }
+    .service-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .service-list li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--font-tech);
+    }
+
+         .workflow-steps {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .step {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed var(--text-muted);
+      padding: 24px;
+      border-radius: 8px;
+    }
+    .step-num {
+      font-family: var(--font-tech);
+      font-size: 2rem;
+      color: rgba(255,255,255,0.1);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+         .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .project-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 6px;
+      cursor: zoom-in;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .project-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.3s ease;
+      opacity: 0.8;
+    }
+    .project-item:hover img {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    .project-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .project-item:hover .project-overlay {
+      transform: translateY(0);
+    }
+    .project-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+         .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      padding: 20px;
+    }
+    .lightbox.active { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-height: 90vh;
+      max-width: 100%;
+      border: 2px solid var(--bg-card);
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+         .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
+      background: var(--bg-card);
+      padding: 40px;
+      border-radius: 12px;
+      border: var(--border);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: var(--text-muted); }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      background: var(--bg-body);
+      border: 1px solid #334155;
+      border-radius: 4px;
+      color: #fff;
+      font-family: var(--font-main);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    textarea.form-control { min-height: 120px; resize: vertical; }
+
+         .fab-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 900;
+    }
+    .fab {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .fab:hover { transform: scale(1.1); }
+    .fab-wa { background: #25D366; }
+    .fab-email { background: var(--primary); }
+    .fab svg { width: 24px; height: 24px; fill: currentColor; }
+
+         footer {
+      padding: 40px 0;
+      border-top: var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: #0b1120;
+    }
+
+         @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 100px; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { display: none; }        h1 { font-size: 2rem; }
+      .menu-toggle { display: block; color: #fff; }
+      nav.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height);
+        left: 0; right: 0;
+        background: var(--bg-card);
+        padding: 20px;
+        border-bottom: var(--border);
+      }
+      .fab-container { bottom: 20px; right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-content">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="TheSteelDesigner Logo" onerror="this.style.display='none'">
+        <span>TheSteelDesigner<span style="color:var(--primary)">.eu</span></span>
+      </a>
+      
+      <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">☰</div>
+      
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#workflow">Process</a>
+        <a href="#portfolio">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact" style="color: var(--primary);">Request Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div class="hero-text">
+        <div class="tech-text">Structural Engineering & Detailing</div>
+        <h1>Steel Structure Design <br> <span style="color:var(--text-muted); font-weight:300;">& Advanced Analysis</span></h1>
+        <p>European practice led by <strong>Silviu Ionescu, PhD</strong>. Specialised in Eurocode design, SAP2000/ETABS analysis, and Tekla Structures detailing. We provide complete design packages and independent second opinions.</p>
+        
+        <div class="hero-tags">
+          <span class="tag">EN 1993 (Steel)</span>
+          <span class="tag">EN 1998 (Seismic)</span>
+          <span class="tag">Connection Design</span>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <div class="software-badge sw-tekla">Tekla Structures</div>
+          <div class="software-badge sw-sap">SAP2000</div>
+          <div class="software-badge sw-etabs">ETABS</div>
+        </div>
+
+        <a href="#contact" class="btn btn-primary">Get a Quote</a>
+        <a href="#portfolio" class="btn btn-outline" style="margin-left: 10px;">View Projects</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="tech-text" style="margin-bottom:10px;">// CAPABILITIES</div>
+          <p style="font-size: 0.9rem; margin-bottom: 10px;">Integrated workflow from calculation to fabrication drawings.</p>
+          <div class="stat-grid">
+            <div class="stat-item">
+              <strong>Analysis</strong>
+              <span>FEA / Seismic / Stability</span>
+            </div>
+            <div class="stat-item">
+              <strong>Detailing</strong>
+              <span>LOD 400 / NC Files</span>
+            </div>
+            <div class="stat-item">
+              <strong>Review</strong>
+              <span>2nd Opinion / Optimisation</span>
+            </div>
+            <div class="stat-item">
+              <strong>Codes</strong>
+              <span>Eurocodes / Annexes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section-padding">
+      <div class="container">
+        <div class="tech-text">WHAT WE DO</div>
+        <h2>Services</h2>
+        
+        <div class="grid-3">
+          <article class="service-card">
+            <div class="service-icon">🏗️</div> <h3>Design & Analysis</h3>
+            <p>Conceptual and detailed design of steel structures (halls, platforms, mezzanines) to Eurocodes.</p>
+            <ul class="service-list">
+              <li>Global analysis in SAP2000 & ETABS</li>
+              <li>Seismic design (EN 1998)</li>
+              <li>Serviceability & Stability checks</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🔗</div>
+            <h3>Connections & Review</h3>
+            <p>Design and verification of steel connections plus independent review of existing designs.</p>
+            <ul class="service-list">
+              <li>Moment-resisting joints</li>
+              <li>Base plates & Splices</li>
+              <li>Calculation notes for QA/QC</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">📐</div>
+            <h3>Tekla Detailing</h3>
+            <p>3D Tekla Structures models aligned with design intent and analysis results.</p>
+            <ul class="service-list">
+              <li>GA & Assembly Drawings</li>
+              <li>BOM & NC Files</li>
+              <li>LOD 350-400 Modeling</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section-padding" style="background: rgba(255,255,255,0.02);">
+      <div class="container">
+        <h2>Collaboration Process</h2>
+        <p>We act as your external steel specialist—from early concept to fabrication ready files.</p>
+        
+        <div class="workflow-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Brief & Scope</h3>
+            <p>Send architectural drawings or existing models. We define the scope (Analysis, Tekla, or Review) and provide a fixed fee estimation.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>Analysis & Model</h3>
+            <p>We build the SAP2000/ETABS model, perform Eurocode checks, and synchronize the geometry with Tekla Structures.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Delivery</h3>
+            <p>You receive calculation reports, 3D models, PDF drawings, and NC files ready for the workshop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section-padding">
+      <div class="container">
+        <h2>Project Portfolio</h2>
+        <p>A selection of steel structures and Tekla models.</p>
+        
+        <div class="portfolio-grid" id="portfolioGrid">
+          </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <button class="btn btn-outline" id="loadMoreBtn">Load More Projects</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="contact-wrapper">
+          <div id="about">
+            <h3>About the Lead</h3>
+            <p><strong>Silviu Ionescu, PhD Civil Eng.</strong> combines academic depth with practical site experience.</p>
+            <p>Daily work involves turning advanced FEA results into buildable steel details. We offer remote collaboration across Europe.</p>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #334155;">
+              <p><strong>Email:</strong> contact@thesteeldesigner.eu</p>
+              <p><strong>Location:</strong> EU (Remote)</p>
+            </div>
+          </div>
+
+          <div>
+            <h3>Request a Quote</h3>
+            <form action="mailto:contact@thesteeldesigner.eu" method="post" enctype="text/plain">
+              <div class="form-group">
+                <label>Name / Company</label>
+                <input type="text" name="name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>Service Needed</label>
+                <select name="service" class="form-control">
+                   <option>Steel Design & Analysis</option>
+                   <option>Tekla Detailing</option>
+                   <option>Connection Design</option>
+                   <option>Consultancy / Second Opinion</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Project Details</label>
+                <textarea name="details" class="form-control" placeholder="Describe project type, tonnage, and deadlines..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%">Send Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> TheSteelDesigner.eu. All rights reserved.</p>
+      <p style="font-size: 0.75rem; opacity: 0.6;">Steel Structure Design, SAP2000/ETABS Analysis & Tekla Detailing.</p>
+    </div>
+  </footer>
+
+  <div class="fab-container">
+    <a href="https://wa.me/YOUR_NUMBER_HERE" target="_blank" class="fab fab-wa" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 32 32"><path d="M16.03 3C9.95 3 5 7.95 5 14.03c0 2.47.82 4.76 2.23 6.61L5 27l6.57-2.17A11.01 11.01 0 0 0 16.03 25C22.1 25 27.05 20.05 27.05 13.97S22.1 3 16.03 3zm0 2.05c4.92 0 8.97 4.05 8.97 8.97S20.95 23 16.03 23a8.9 8.9 0 0 1-4.57-1.26l-.33-.19-3.9 1.29 1.3-3.8-.21-.35A8.86 8.86 0 0 1 7.06 14c0-4.92 4.05-8.97 8.97-8.97zm-4.01 4.58c-.21-.47-.43-.48-.63-.49l-.54-.01c-.19 0-.5.07-.76.37s-1 1-1 2.44 1.03 2.83 1.17 3.02c.14.19 2.02 3.22 4.98 4.39 2.46 0.97 2.96 0.78 3.5 0.73s1.72-.7 1.97-1.38c.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.54-.33s-1.72-.85-1.99-.95c-.27-.1-.46-.14-.66.14-.2.29-.76.95-.93 1.14-.17.19-.34.21-.62.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.13-.13.3-.35.45-.53.15-.18.2-.3.3-.49.1-.2.05-.37-.02-.52-.07-.14-.61-1.47-.85-2.01z"/></svg>
+    </a>
+    <a href="mailto:contact@thesteeldesigner.eu" class="fab fab-email" aria-label="Send Email">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+  </div>
+
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+
+    const terms = [
+      'steel construction', 'scaffolding', 'bridge construction', 
+      'industrial warehouse', 'steel beams', 'welding', 
+      'crane', 'skyscraper construction', 'metal framework'
+    ];
+
+    let loadedCount = 0;
+    const batchSize = 6;
+    const totalSimulatedItems = 18; 
+
+    function loadItems() {
+      const limit = Math.min(loadedCount + batchSize, totalSimulatedItems);
+      
+      for (let i = loadedCount; i < limit; i++) {
+        const term = terms[i % terms.length];
+        const imgUrl = `https://source.unsplash.com/600x450/?${encodeURIComponent(term)}&sig=${i}`;
+     
+        const stableImgUrl = `https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80&random=${i}`;
+
+        const div = document.createElement('div');
+        div.className = 'project-item';
+        div.onclick = function() { openLightbox(stableImgUrl); };
+        
+        div.innerHTML = `
+          <img src="${stableImgUrl}" alt="Project ${i+1}" loading="lazy">
+          <div class="project-overlay">
+            <div class="project-title">PROJECT REF. ${202400 + i} <br> Structural Steel Analysis</div>
+          </div>
+        `;
+        portfolioGrid.appendChild(div);
+      }
+      
+      loadedCount = limit;
+      if (loadedCount >= totalSimulatedItems) {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+
+    loadItems();
+    loadMoreBtn.addEventListener('click', loadItems);
+
+         const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+    
+      lightboxImg.src = src.replace('&w=600', '&w=1200');
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      setTimeout(() => lightboxImg.src = '', 300);
+    }
+
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
