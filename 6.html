@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TheSteelDesigner.eu | Advanced Structural Engineering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="European structural engineering practice specialised in steel structure design to Eurocodes."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-body: #0a0b10;
+        --bg-panel: rgba(20, 22, 30, 0.6);
+        --bg-input: #050508;
+
+        --primary-cyan: #00f2ff;
+        --primary-blue: #2563eb;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --text-dim: #475569;
+
+        --border-tech: 1px solid rgba(255, 255, 255, 0.08);
+        --glass: blur(12px) saturate(180%);
+
+        --font-main: "Manrope", sans-serif;
+        --font-code: "JetBrains Mono", monospace;
+        --header-height: 90px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-main);
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+        width: 100%;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: 0.3s;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.02em;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        font-size: 4rem;
+      }
+
+      p {
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+      }
+
+      .mono-label {
+        font-family: var(--font-code);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--primary-cyan);
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .section-padding {
+        padding: 120px 0;
+        border-top: var(--border-tech);
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        z-index: 1000;
+        background: rgba(10, 11, 16, 0.95);
+        backdrop-filter: var(--glass);
+        border-bottom: var(--border-tech);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.25rem;
+        line-height: 1;
+        z-index: 1001;
+      }
+      .logo img {
+        height: 45px;
+        width: auto;
+        border-radius: 4px;
+      }
+
+      nav {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+      nav a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        position: relative;
+      }
+      nav a:hover {
+        color: #fff;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-cyan);
+        transition: 0.3s;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      .btn-nav-cta {
+        padding: 10px 24px;
+        border: 1px solid var(--text-dim);
+        border-radius: 2px;
+        font-family: var(--font-code);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+      }
+      .btn-nav-cta:hover {
+        border-color: var(--primary-cyan);
+        color: var(--primary-cyan);
+        box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: calc(var(--header-height) + 40px);
+        padding-bottom: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        width: 500px;
+        height: 500px;
+        background: var(--primary-blue);
+        filter: blur(200px);
+        opacity: 0.15;
+        z-index: -1;
+        max-width: 100%;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 80px;
+        align-items: center;
+        width: 100%;
+      }
+      .hero-text p {
+        font-size: 1.1rem;
+        max-width: 550px;
+        margin-bottom: 40px;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: var(--primary-cyan);
+        color: #0a0b10;
+        padding: 16px 32px;
+        font-weight: 700;
+        font-family: var(--font-code);
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+        text-align: center;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #fff;
+        padding: 16px 32px;
+        font-weight: 600;
+        border: 1px solid var(--text-dim);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.3s;
+        justify-content: center;
+      }
+      .btn-outline:hover {
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .tech-panel {
+        background: var(--bg-panel);
+        backdrop-filter: var(--glass);
+        border: var(--border-tech);
+        padding: 40px;
+        position: relative;
+      }
+      .tech-panel::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        width: 20px;
+        height: 20px;
+        border-top: 2px solid var(--primary-cyan);
+        border-right: 2px solid var(--primary-cyan);
+      }
+      .tech-panel::before {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: -1px;
+        width: 20px;
+        height: 20px;
+        border-bottom: 2px solid var(--primary-cyan);
+        border-left: 2px solid var(--primary-cyan);
+      }
+      .stat-row {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dashed var(--text-dim);
+        padding: 16px 0;
+        font-family: var(--font-code);
+        font-size: 0.85rem;
+      }
+      .stat-row:last-child {
+        border-bottom: none;
+      }
+      .stat-row span:last-child {
+        color: #fff;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+      }
+      .tech-card {
+        background: var(--bg-panel);
+        border: var(--border-tech);
+        padding: 40px;
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .tech-card:hover {
+        border-color: var(--primary-cyan);
+        transform: translateY(-5px);
+      }
+      .tech-card h3 {
+        font-family: var(--font-code);
+        font-size: 1.1rem;
+        margin-top: 15px;
+      }
+      .service-icon {
+        font-size: 2.5rem;
+        color: var(--primary-cyan);
+        opacity: 0.8;
+      }
+      .tech-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+        font-family: var(--font-code);
+      }
+      .tech-list li::before {
+        content: ">";
+        color: var(--primary-cyan);
+      }
+
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+      .step-item {
+        position: relative;
+        padding-top: 20px;
+        border-top: 1px solid var(--text-dim);
+      }
+      .step-bg-num {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        font-size: 5rem;
+        font-weight: 800;
+        opacity: 0.05;
+        line-height: 0.8;
+        font-family: var(--font-code);
+        color: #fff;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 4px;
+        margin-top: 50px;
+      }
+      .project-card {
+        position: relative;
+        aspect-ratio: 4/3;
+        cursor: pointer;
+        overflow: hidden;
+        background: #111;
+        border: 1px solid transparent;
+        transition: 0.3s;
+      }
+      .project-card img {
+        opacity: 0.7;
+        filter: grayscale(100%) contrast(1.1);
+        transition: 0.5s ease;
+        width: 100%;
+        height: 100%;
+      }
+      .project-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px;
+        background: linear-gradient(to top, #000, transparent);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: 0.4s;
+      }
+      .project-card:hover {
+        border-color: var(--primary-cyan);
+        z-index: 10;
+      }
+      .project-card:hover img {
+        opacity: 1;
+        filter: grayscale(0%);
+        transform: scale(1.03);
+      }
+      .project-card:hover .project-overlay {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 60px;
+        background: var(--bg-panel);
+        border: var(--border-tech);
+        padding: 60px;
+      }
+      .bio-card {
+        border-left: 2px solid var(--primary-cyan);
+        padding-left: 30px;
+      }
+      .tech-form .form-group {
+        margin-bottom: 24px;
+      }
+      .tech-form label {
+        display: block;
+        font-family: var(--font-code);
+        font-size: 0.75rem;
+        color: var(--primary-cyan);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+      .tech-form .form-control {
+        width: 100%;
+        padding: 16px;
+        background: var(--bg-input);
+        border: 1px solid var(--text-dim);
+        color: #fff;
+        font-family: var(--font-main);
+        transition: 0.3s;
+      }
+      .tech-form .form-control:focus {
+        outline: none;
+        border-color: var(--primary-cyan);
+        box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+      }
+
+      footer {
+        border-top: var(--border-tech);
+        padding: 40px 0;
+        text-align: center;
+        background: #050508;
+      }
+      footer p {
+        font-size: 0.8rem;
+        margin: 0;
+        opacity: 0.6;
+        font-family: var(--font-code);
+      }
+
+      .dock {
+        position: fixed;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 900;
+      }
+      .dock-item {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        transition: 0.3s;
+        backdrop-filter: blur(5px);
+      }
+      .dock-item:hover {
+        background: var(--primary-cyan);
+        color: #000;
+        transform: scale(1.1);
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 5, 8, 0.95);
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+        padding: 20px;
+      }
+      .lightbox.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .lightbox img {
+        max-height: 85vh;
+        max-width: 100%;
+        border: 1px solid var(--text-dim);
+      }
+      .close-lb {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      @media (max-width: 479px) {
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 20px;
+        }
+        .container {
+          padding: 0 16px;
+        }
+        .section-padding {
+          padding: 60px 16px;
+        }
+
+        header {
+          padding: 0 16px;
+          height: 70px;
+        }
+        .hero {
+          padding-top: 100px;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          text-align: center;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          margin-top: 30px;
+        }
+        .process-steps {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          padding: 24px;
+          gap: 40px;
+        }
+
+        .tech-panel {
+          padding: 24px;
+          width: 100%;
+        }
+        .btn-group {
+          justify-content: center;
+          flex-direction: column;
+          width: 100%;
+        }
+        .bio-card {
+          border-left: none;
+          border-top: 1px solid var(--primary-cyan);
+          padding-left: 0;
+          padding-top: 30px;
+        }
+
+        .dock {
+          right: 50%;
+          top: auto;
+          bottom: 20px;
+          transform: translateX(50%);
+          flex-direction: row;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+        nav {
+          display: none;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: #0a0b10;
+          flex-direction: column;
+          padding: 30px;
+          border-bottom: 1px solid var(--primary-cyan);
+        }
+        nav.active {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 480px) and (max-width: 639px) {
+        h1 {
+          font-size: 2.25rem;
+        }
+        .container {
+          padding: 0 20px;
+        }
+        .section-padding {
+          padding: 70px 0;
+        }
+
+        header {
+          padding: 0 20px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+          text-align: center;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .process-steps {
+          grid-template-columns: 1fr;
+        }
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          padding: 30px;
+        }
+
+        .btn-group {
+          justify-content: center;
+        }
+        .bio-card {
+          border-left: none;
+          border-top: 1px solid var(--primary-cyan);
+          padding-left: 0;
+          padding-top: 30px;
+        }
+
+        .dock {
+          right: 50%;
+          top: auto;
+          bottom: 20px;
+          transform: translateX(50%);
+          flex-direction: row;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+        nav {
+          display: none;
+          position: absolute;
+          top: 90px;
+          left: 0;
+          right: 0;
+          background: #0a0b10;
+          flex-direction: column;
+          padding: 30px;
+          border-bottom: 1px solid var(--primary-cyan);
+        }
+        nav.active {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 640px) and (max-width: 767px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+        .container {
+          padding: 0 24px;
+        }
+        .section-padding {
+          padding: 80px 0;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+          text-align: center;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .bio-card {
+          border-left: none;
+          border-top: 1px solid var(--primary-cyan);
+          padding-left: 0;
+          padding-top: 30px;
+        }
+
+        .dock {
+          right: 50%;
+          top: auto;
+          bottom: 20px;
+          transform: translateX(50%);
+          flex-direction: row;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+        nav {
+          display: none;
+          position: absolute;
+          top: 90px;
+          left: 0;
+          right: 0;
+          background: #0a0b10;
+          flex-direction: column;
+          padding: 30px;
+          border-bottom: 1px solid var(--primary-cyan);
+        }
+        nav.active {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        h1 {
+          font-size: 3rem;
+        }
+        .container {
+          padding: 0 30px;
+        }
+        .section-padding {
+          padding: 90px 30px;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 60px;
+          text-align: center;
+        }
+        .hero-text {
+          margin: 150px auto;
+        }
+        .tech-panel {
+          margin: 0 auto;
+          max-width: 600px;
+        }
+
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+        .process-steps {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .bio-card {
+          border-left: none;
+          border-top: 1px solid var(--primary-cyan);
+          padding-left: 0;
+          padding-top: 30px;
+        }
+
+        .btn-group {
+          justify-content: center;
+        }
+        .dock {
+          right: 30px;
+          top: auto;
+          bottom: 30px;
+          transform: none;
+          flex-direction: column;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        nav {
+          display: none;
+          position: absolute;
+          top: 90px;
+          left: 0;
+          right: 0;
+          background: #0a0b10;
+          flex-direction: column;
+          padding: 40px;
+          border-bottom: 1px solid var(--primary-cyan);
+          text-align: center;
+        }
+        nav.active {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 1024px) and (max-width: 1279px) {
+        h1 {
+          font-size: 3.5rem;
+        }
+        .container {
+          max-width: 1000px;
+          padding: 0 40px;
+        }
+        .section-padding {
+          padding: 100px 40px;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1.4fr 1fr;
+          gap: 40px;
+          text-align: left;
+        }
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr 1.5fr;
+        }
+        .bio-card {
+          border-left: 2px solid var(--primary-cyan);
+          border-top: none;
+          padding-left: 30px;
+          padding-top: 0;
+        }
+
+        .menu-toggle {
+          display: none;
+        }
+        nav {
+          display: flex;
+          flex-direction: row;
+          position: static;
+          border: none;
+          padding: 0;
+          background: transparent;
+        }
+        .dock {
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          flex-direction: column;
+        }
+      }
+
+      @media (min-width: 1280px) and (max-width: 1535px) {
+        h1 {
+          font-size: 4rem;
+        }
+        .container {
+          max-width: 1200px;
+        }
+        .section-padding {
+          padding: 120px 0;
+        }
+        .menu-toggle {
+          display: none;
+        }
+        nav {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 1536px) {
+        h1 {
+          font-size: 5rem;
+        }
+        .container {
+          max-width: 1400px;
+        }
+        .section-padding {
+          padding: 140px 0;
+        }
+        .hero {
+          padding-top: 180px;
+        }
+        .menu-toggle {
+          display: none;
+        }
+        nav {
+          display: flex;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dock">
+      <a href="#" class="dock-item" title="WhatsApp">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2Z"
+          />
+        </svg>
+      </a>
+      <a
+        href="mailto:contact@thesteeldesigner.eu"
+        class="dock-item"
+        title="Email"
+      >
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <header>
+      <a href="#" class="logo">
+        <img src="logo.jfif" alt="TheSteelDesigner Logo" />
+        <span
+          >THESTEEL<span style="color: var(--primary-cyan)">DESIGNER</span
+          >.EU</span
+        >
+      </a>
+
+      <div
+        class="menu-toggle"
+        onclick="document.querySelector('nav').classList.toggle('active')"
+      >
+        ☰
+      </div>
+
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#process">Workflow</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn-nav-cta">GET QUOTE</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container hero">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <span class="mono-label">// Structural Engineering Firm</span>
+            <h1>
+              PRECISION STEEL <br />
+              <span style="color: var(--text-muted); font-weight: 300"
+                >STRUCTURE DESIGN.</span
+              >
+            </h1>
+            <p>
+              We convert complex architectural visions into buildable realities.
+              Specialised in Eurocode analysis, seismic design, and LOD 400
+              Tekla detailing.
+            </p>
+
+            <div class="btn-group">
+              <a
+                href="#contact"
+                class="btn-primary"
+                style="text-decoration: none"
+                >START PROJECT</a
+              >
+              <a
+                href="#portfolio"
+                class="btn-outline"
+                style="text-decoration: none"
+              >
+                VIEW PORTFOLIO
+              </a>
+            </div>
+          </div>
+
+          <div class="tech-panel">
+            <div class="stat-row">
+              <span style="color: var(--text-muted)">PRIMARY CODE</span>
+              <span>EUROCODE 3 & 8</span>
+            </div>
+            <div class="stat-row">
+              <span style="color: var(--text-muted)">ANALYSIS</span>
+              <span>SAP2000 / ETABS</span>
+            </div>
+            <div class="stat-row">
+              <span style="color: var(--text-muted)">DETAILING</span>
+              <span>TEKLA STRUCTURES</span>
+            </div>
+            <div class="stat-row">
+              <span style="color: var(--text-muted)">CONNECTION</span>
+              <span>IDEA STATICA</span>
+            </div>
+            <div class="stat-row">
+              <span style="color: var(--text-muted)">STATUS</span>
+              <span style="color: var(--primary-cyan)">AVAILABLE FOR HIRE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section-padding container">
+        <span class="mono-label">01 // CAPABILITIES</span>
+        <h2>CORE SERVICES</h2>
+
+        <div class="grid-3">
+          <div class="tech-card">
+            <div class="service-icon">🏗️</div>
+            <h3>Design & Analysis</h3>
+            <p>
+              Global analysis in SAP2000 & ETABS with full Eurocode
+              verification.
+            </p>
+            <ul class="tech-list">
+              <li>Seismic Design (EN 1998)</li>
+              <li>Steel Halls & Platforms</li>
+              <li>Stability Checks</li>
+            </ul>
+          </div>
+
+          <div class="tech-card">
+            <div class="service-icon">🔗</div>
+            <h3>Connections & Review</h3>
+            <p>
+              Complex node design and independent 3rd party calculation reviews.
+            </p>
+            <ul class="tech-list">
+              <li>Idea Statica Analysis</li>
+              <li>Moment Resisting Joints</li>
+              <li>Optimization Reports</li>
+            </ul>
+          </div>
+
+          <div class="tech-card">
+            <div class="service-icon">📐</div>
+            <h3>Tekla Detailing</h3>
+            <p>LOD 400 modeling for error-free fabrication and erection.</p>
+            <ul class="tech-list">
+              <li>GA & Assembly Drawings</li>
+              <li>NC Files & BOM</li>
+              <li>BIM Coordination</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="section-padding container">
+        <span class="mono-label">02 // WORKFLOW</span>
+        <h2>EXECUTION SEQUENCE</h2>
+
+        <div class="process-steps">
+          <div class="step-item">
+            <div class="step-bg-num">01</div>
+            <h3 style="font-family: var(--font-code)">BRIEF & SCOPE</h3>
+            <p>
+              Input analysis of architectural drawings. We define the exact
+              scope (Analysis, Detailing, or Review) and provide a fixed fee
+              estimation.
+            </p>
+          </div>
+
+          <div class="step-item">
+            <div class="step-bg-num">02</div>
+            <h3 style="font-family: var(--font-code)">ANALYSIS & MODEL</h3>
+            <p>
+              Creation of the analytical model in SAP2000/ETABS. Geometry
+              synchronization with Tekla Structures for clash detection.
+            </p>
+          </div>
+
+          <div class="step-item">
+            <div class="step-bg-num">03</div>
+            <h3 style="font-family: var(--font-code)">DELIVERY</h3>
+            <p>
+              Handover of calculation reports, PDF drawings, 3D IFC models, and
+              NC files ready for the workshop machines.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="section-padding container">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+          "
+        >
+          <div>
+            <span class="mono-label">03 // SELECTED WORKS</span>
+            <h2>RECENT PROJECTS</h2>
+          </div>
+          <span style="font-family: var(--font-code); color: var(--text-dim)"
+            >SCROLL FOR MORE ↓</span
+          >
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+
+        <div style="text-align: center; margin-top: 40px">
+          <button class="btn-outline" id="loadMoreBtn" style="margin: 0 auto">
+            LOAD MORE DATA
+          </button>
+        </div>
+      </section>
+
+      <section id="contact" class="section-padding container">
+        <span class="mono-label">04 // INITIALIZE CONTACT</span>
+        <h2>START COLLABORATION</h2>
+
+        <div class="contact-grid">
+          <div id="about" class="bio-card">
+            <h3>LEAD ENGINEER</h3>
+            <p>
+              <strong>Silviu Ionescu, PhD</strong> combines academic depth with
+              practical site experience.
+            </p>
+            <p>
+              Daily work involves turning advanced FEA results into buildable
+              steel details. We offer remote collaboration across Europe.
+            </p>
+
+            <div
+              style="
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px dashed var(--text-dim);
+              "
+            >
+              <p class="mono-label" style="margin-bottom: 5px">
+                DIRECT CHANNEL:
+              </p>
+              <p style="color: #fff; font-family: var(--font-code)">
+                contact@thesteeldesigner.eu
+              </p>
+              <p style="color: #fff; font-family: var(--font-code)">
+                Location: EU (Remote)
+              </p>
+            </div>
+          </div>
+
+          <div class="form-wrapper">
+            <form
+              action="mailto:contact@thesteeldesigner.eu"
+              method="post"
+              enctype="text/plain"
+              class="tech-form"
+            >
+              <div class="form-group">
+                <label>NAME / COMPANY ID</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  required
+                  placeholder="ENTER NAME"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>EMAIL ADDRESS</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  required
+                  placeholder="NAME@DOMAIN.COM"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>SERVICE REQUIRED</label>
+                <select name="service" class="form-control">
+                  <option>Steel Design & Analysis</option>
+                  <option>Tekla Detailing</option>
+                  <option>Connection Design</option>
+                  <option>Consultancy / Second Opinion</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>PROJECT PARAMETERS</label>
+                <textarea
+                  name="details"
+                  class="form-control"
+                  placeholder="Describe tonnage, deadline, and scope..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="btn-primary"
+                style="width: 100%; margin-top: 10px"
+              >
+                TRANSMIT REQUEST
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <p>© <span id="year"></span> THESTEELDESIGNER.EU // SYSTEM ONLINE</p>
+        <p style="margin-top: 5px">ADVANCED STRUCTURAL ENGINEERING</p>
+      </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+      <button class="close-lb" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const portfolioGrid = document.getElementById("portfolioGrid");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+      const categories = [
+        "Steel Truss",
+        "Industrial Hall",
+        "Crane",
+        "Construction Site",
+        "Metal Beams",
+        "Welding",
+      ];
+
+      let loadedCount = 0;
+      const batchSize = 6;
+      const totalSimulatedItems = 12;
+
+      function loadItems() {
+        const limit = Math.min(loadedCount + batchSize, totalSimulatedItems);
+
+        for (let i = loadedCount; i < limit; i++) {
+          const category = categories[i % categories.length];
+
+          const stableImgUrl = `https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80&random=${i}`;
+
+          const div = document.createElement("div");
+          div.className = "project-card";
+          div.onclick = function () {
+            openLightbox(this);
+          };
+
+          div.innerHTML = `
+          <img src="${stableImgUrl}" alt="Project ${i + 1}" loading="lazy">
+          <div class="project-overlay">
+            <span class="mono-label" style="margin-bottom:5px; color:var(--primary-cyan)">REF. 2024-${
+              200 + i
+            }</span>
+            <h3 style="font-size:1rem; margin-bottom:5px;">${category} Structure</h3>
+            <p style="font-size:0.8rem; margin:0;">Tekla Detailing & Analysis</p>
+          </div>
+        `;
+          portfolioGrid.appendChild(div);
+        }
+
+        loadedCount = limit;
+        if (loadedCount >= totalSimulatedItems) {
+          loadMoreBtn.style.display = "none";
+        }
+      }
+
+      loadItems();
+      loadMoreBtn.addEventListener("click", loadItems);
+
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+
+      function openLightbox(element) {
+        const img = element.querySelector("img");
+        const highRes = img.src.replace("&w=600", "&w=1600");
+        lightboxImg.src = highRes;
+        lightbox.classList.add("active");
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+      }
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+    </script>
+  </body>
+</html>
