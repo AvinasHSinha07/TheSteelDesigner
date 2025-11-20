@@ -17,13 +17,10 @@
     />
 
     <style>
-      /* --- VARIABLES & RESET --- */
       :root {
-        /* --- DARK MODE (DEFAULT) --- */
         --bg-dark: #020617;
         --bg-panel: #0f172a;
 
-        /* Neon Cyan & Electric Purple Gradient */
         --primary: #06b6d4;
         --primary-glow: #22d3ee;
         --accent: #8b5cf6;
@@ -32,7 +29,6 @@
         --text-head: #ffffff;
         --text-muted: #94a3b8;
 
-        /* Glassmorphism - Dark */
         --glass-bg: rgba(255, 255, 255, 0.03);
         --glass-border: 1px solid rgba(255, 255, 255, 0.08);
         --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -46,32 +42,24 @@
         --blob-opacity: 0.15;
       }
 
-      /* --- LIGHT MODE OVERRIDES (Professional Architectural Slate) --- */
       [data-theme="light"] {
-        /* Clean, high-end off-white background */
         --bg-dark: #f8fafc;
-        /* Pure white panels for depth */
         --bg-panel: #ffffff;
 
-        /* Deeper Cyan/Teal for better visibility on white */
         --primary: #0891b2;
         --primary-glow: #06b6d4;
-        --accent: #6366f1; /* Indigo for a sharp accent */
-
-        /* High contrast Slate text (Dark Gunmetal) */
+        --accent: #6366f1;
         --text-main: #334155;
-        --text-head: #0f172a; /* Almost black, deep navy */
+        --text-head: #0f172a;
         --text-muted: #64748b;
 
-        /* Glassmorphism - Light (Frosted Glass look) */
         --glass-bg: rgba(255, 255, 255, 0.85);
         --glass-border: 1px solid rgba(226, 232, 240, 0.8);
-        --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08); /* Soft, modern shadow */
-
+        --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
         --input-bg: #ffffff;
         --input-border: #cbd5e1;
 
-        --blob-opacity: 0.08; /* Very subtle blobs */
+        --blob-opacity: 0.08;
       }
 
       * {
@@ -106,7 +94,6 @@
         display: block;
       }
 
-      /* --- ANIMATED BACKGROUND --- */
       .bg-blob {
         position: fixed;
         width: 600px;
@@ -115,7 +102,7 @@
         z-index: -1;
         animation: floatBlob 15s infinite ease-in-out;
         pointer-events: none;
-        opacity: var(--blob-opacity); /* Use variable */
+        opacity: var(--blob-opacity);
       }
       .blob-1 {
         top: -200px;
@@ -150,7 +137,6 @@
         }
       }
 
-      /* --- TYPOGRAPHY --- */
       h1,
       h2,
       h3 {
@@ -201,7 +187,6 @@
         border-color: rgba(8, 145, 178, 0.2);
       }
 
-      /* --- UTILITIES --- */
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -209,7 +194,6 @@
         position: relative;
       }
 
-      /* Glassmorphism Class */
       .glass {
         background: var(--glass-bg);
         backdrop-filter: blur(12px);
@@ -219,7 +203,6 @@
         transition: background 0.3s, border 0.3s, box-shadow 0.3s;
       }
 
-      /* Scroll Reveal Animation Class */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
@@ -230,7 +213,6 @@
         transform: translateY(0);
       }
 
-      /* --- BUTTONS --- */
       .btn {
         display: inline-flex;
         align-items: center;
@@ -270,7 +252,6 @@
         box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
       }
 
-      /* --- HEADER --- */
       header {
         position: fixed;
         top: 20px;
@@ -290,7 +271,6 @@
         border-radius: 100px;
       }
 
-      /* LOGO STYLING */
       .logo {
         display: flex;
         align-items: center;
@@ -315,7 +295,6 @@
         color: var(--primary);
       }
 
-      /* NAVIGATION */
       nav {
         display: flex;
         gap: 30px;
@@ -345,7 +324,6 @@
         width: 100%;
       }
 
-      /* THEME TOGGLE BUTTON */
       .theme-toggle {
         background: none;
         border: none;
@@ -369,9 +347,7 @@
         cursor: pointer;
       }
 
-      /* --- HERO --- */
       .hero {
-        /* min-height: 100vh; */
         display: flex;
         align-items: center;
         padding-top: 150px;
@@ -427,8 +403,7 @@
       }
       [data-theme="light"] .stat-item {
         background: rgba(241, 245, 249, 0.8);
-      } /* Slate 100 */
-
+      }
       .stat-item h4 {
         font-size: 1.2rem;
         margin-bottom: 4px;
@@ -439,7 +414,6 @@
         color: var(--text-muted);
       }
 
-      /* --- SERVICES --- */
       .section-padding {
         padding: 120px 0;
       }
@@ -481,24 +455,21 @@
         transform: translateX(100%);
       }
 
-      /* UPDATED SERVICE ICONS */
       .service-icon {
         font-size: 2.5rem;
         margin-bottom: 40px;
         color: var(--primary);
-        height: 50px; /* Fixed height for alignment */
+        height: 50px;
         display: flex;
         align-items: center;
       }
-      /* Make SVGs inherit color and fit */
       .service-icon svg {
         height: 100%;
         width: auto;
-        fill: currentColor; /* Inherit the primary color */
-        filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3)); /* Subtle glow */
+        fill: currentColor;
+        filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3));
       }
 
-      /* Cool Eurocode Text Logo style */
       .eurocode-logo {
         font-family: var(--font-tech);
         font-weight: 800;
@@ -507,7 +478,6 @@
         border: 3px solid currentColor;
         padding: 6px 12px;
         border-radius: 6px;
-        /* Technical Stencil look background pattern */
 
         box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
       }
@@ -528,7 +498,6 @@
         top: 4px;
       }
 
-      /* --- WORKFLOW --- */
       .workflow-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -558,7 +527,6 @@
         line-height: 1;
       }
 
-      /* --- PORTFOLIO --- */
       .portfolio-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -613,9 +581,7 @@
         font-weight: 700;
         font-size: 1rem;
         color: #fff;
-      } /* Always white as overlay is dark */
-
-      /* --- CONTACT --- */
+      }
       .contact-wrapper {
         display: grid;
         grid-template-columns: 1fr 1.5fr;
@@ -653,13 +619,11 @@
         resize: vertical;
       }
 
-      /* Select option coloring fix */
       select.form-control option {
         background-color: var(--bg-panel);
         color: var(--text-head);
       }
 
-      /* --- FOOTER --- */
       footer {
         border-top: 1px solid var(--glass-border);
         padding: 40px 0;
@@ -670,7 +634,6 @@
         transition: background 0.3s;
       }
 
-      /* --- LIGHTBOX --- */
       .lightbox {
         position: fixed;
         inset: 0;
@@ -712,7 +675,6 @@
         transform: rotate(90deg);
       }
 
-      /* --- FAB --- */
       .fab-container {
         position: fixed;
         bottom: 30px;
@@ -754,7 +716,6 @@
         fill: currentColor;
       }
 
-      /* --- RESPONSIVE --- */
       @media (max-width: 900px) {
         .hero-grid {
           grid-template-columns: 1fr;
@@ -762,7 +723,7 @@
         }
         .hero-card {
           display: none;
-        } /* Hide card on tablet for simpler view */
+        }
         .hero-text {
           margin: 0 auto;
         }
@@ -785,7 +746,6 @@
         .menu-toggle {
           display: block;
         }
-        /* Mobile Menu Overlay */
         nav.active {
           display: flex;
           flex-direction: column;
@@ -1157,12 +1117,11 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // --- THEME TOGGLE LOGIC ---
       const themeToggle = document.getElementById("themeToggle");
       const themeIcon = document.getElementById("themeIcon");
       const htmlElement = document.documentElement;
 
-      // Check saved preference
+ 
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme) {
         htmlElement.setAttribute("data-theme", savedTheme);
@@ -1182,11 +1141,11 @@
         themeIcon.textContent = theme === "light" ? "🌙" : "☀️";
       }
 
-      // --- PORTFOLIO LOGIC ---
+
       const portfolioGrid = document.getElementById("portfolioGrid");
       const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-      // High Quality Unsplash IDs suitable for construction/architecture
+    
       const imageIds = [
         "1487958449943-2429e8be8625",
         "1487958449943-2429e8be8625",
