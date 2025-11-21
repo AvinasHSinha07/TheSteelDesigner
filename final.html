@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <style>
       :root {
         --bg-dark: #020617;
@@ -406,7 +407,6 @@
       .stat-item h4 {
         font-size: 1.2rem;
         margin-bottom: 4px;
-        border-left: 0;
         color: var(--text-head);
       }
       .stat-item span {
@@ -498,97 +498,11 @@
         top: 4px;
       }
 
-      /* === UPDATED: TIMELINE (HOW COLLABORATION WORKS) === */
-      .timeline-section {
-        margin: 40px auto 80px auto;
-        padding-left: 20px;
-      }
-
-      .timeline-container {
-        position: relative;
-        padding: 10px 0;
-        /* The vertical line */
-        border-left: 2px solid rgba(6, 182, 212, 0.2);
-        margin-left: 10px;
-      }
-
-      .timeline-item {
-        position: relative;
-        margin-bottom: 40px;
-        padding-left: 40px;
-      }
-
-      .timeline-item:last-child {
-        margin-bottom: 0;
-      }
-
-      /* The glowing dot marker */
-      .timeline-marker {
-        position: absolute;
-        left: -9px; /* Centers it on the 2px border */
-        top: 20px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background-color: var(--bg-dark);
-        border: 2px solid var(--primary);
-        box-shadow: 0 0 10px var(--primary);
-        z-index: 2;
-        transition: 0.3s;
-      }
-
-      .timeline-item:hover .timeline-marker {
-        background-color: var(--primary);
-        box-shadow: 0 0 20px var(--primary-glow);
-        transform: scale(1.2);
-      }
-
-      .timeline-content {
-        padding: 30px;
-        border-radius: 12px;
-        position: relative;
-        transition: transform 0.3s ease, border-color 0.3s ease;
-      }
-      
-      .timeline-content:hover {
-        border-color: var(--primary);
-        transform: translateX(5px);
-      }
-
-      /* Arrow pointing to the line */
-      .timeline-content::after {
-        content: "";
-        position: absolute;
-        top: 20px;
-        left: -10px;
-        border-width: 10px 10px 10px 0;
-        border-style: solid;
-        border-color: transparent rgba(255, 255, 255, 0.08) transparent transparent; 
-        /* Matches glass border color somewhat, adjusted below */
-      }
-      
-      /* Ensure content text styling */
-      .timeline-content h3 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: var(--text-head);
-      }
-      .timeline-content p {
-        margin-bottom: 0;
-        font-size: 0.95rem;
-      }
-
-      /* Responsive fix for arrow on light/dark mode */
-      [data-theme="light"] .timeline-content::after {
-         border-color: transparent rgba(226, 232, 240, 0.8) transparent transparent;
-      }
-
-
-      /* Existing Workflow Grid Styles */
       .workflow-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px;
+        margin-top: 60px;
       }
       .step-card {
         padding: 30px;
@@ -885,10 +799,6 @@
 
       /* Responsive adjustments */
       @media (max-width: 768px) {
-        .workflow-intro {
-          padding: 30px;
-        }
-
         .stats-container {
           flex-direction: column;
           gap: 30px;
@@ -1154,48 +1064,6 @@
       <section id="workflow" class="section-padding">
         <div class="container">
           <h2 class="reveal" style="text-align: center">The Workflow</h2>
-
-          <div class="timeline-section reveal">
-            <h3 style="margin-bottom: 20px; color: var(--primary);">How collaboration works</h3>
-            <div class="timeline-container">
-              
-              <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="glass timeline-content">
-                  <h3>Your External Partner</h3>
-                  <p>
-                    TheSteelDesigner.eu acts as your <strong>external steel design, analysis, Tekla and consultancy partner</strong>.
-                    The practice supports in-house teams when workload is high or when deeper expertise is needed in
-                    Eurocodes, SAP2000/ETABS analysis and structural behaviour.
-                  </p>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="glass timeline-content">
-                  <h3>Flexible Integration</h3>
-                  <p>
-                    We can join at almost any stage of a project – from early concept and global analysis to detailed Tekla modelling,
-                    consultancy on existing designs and second opinions before fabrication. The approach is simple:
-                    clear assumptions, clear calculations, clear deliverables — fully aligned with your standards and workflows.
-                  </p>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="glass timeline-content">
-                  <h3>Why Collaborate?</h3>
-                  <p>
-                    We fill specialist gaps in your team, focusing on technical excellence from
-                    global analysis to fabrication readiness, and offering <strong>independent review</strong> to ensure project success.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
           <div class="workflow-grid">
             <div class="glass step-card reveal">
               <div class="step-num">01</div>
